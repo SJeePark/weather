@@ -1,0 +1,49 @@
+body{
+    background: url('/img/cloud_pic.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+}
+
+.title{
+    display: flex;  
+    justify-content: center;
+    margin-top: 40px;
+    font-size: 100px;
+    font-style: italic;
+    font-family: 'MaruBuriSemiBold';
+}
+
+.container{
+    display: flex;  
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    /* display 가로 속성을 세로 정렬 바꿔줌*/
+    flex-direction: column; 
+}
+
+.weather-box{
+    border: 3px solid white;
+    border-radius: 50px;
+    padding: 50px;
+    background-color: rgba(133, 134, 199, 0.647) ;
+    margin: 20px;
+}
+
+button{
+    margin: 5px;
+}
+
+.image{
+    background: url('/img/rain.gif');
+    height: 30vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+@font-face {
+    font-family: 'MaruBuriSemiBold';
+    src: url(https://hangeul.pstatic.net/hangeul_static/webfont/MaruBuri/MaruBuri-SemiBold.eot);
+    src: url(https://hangeul.pstatic.net/hangeul_static/webfont/MaruBuri/MaruBuri-SemiBold.eot?#iefix) format("embedded-opentype"), url(https://hangeul.pstatic.net/hangeul_static/webfont/MaruBuri/MaruBuri-SemiBold.woff2) format("woff2"), url(https://hangeul.pstatic.net/hangeul_static/webfont/MaruBuri/MaruBuri-SemiBold.woff) format("woff"), url(https://hangeul.pstatic.net/hangeul_static/webfont/MaruBuri/MaruBuri-SemiBold.ttf) format("truetype");
+}
