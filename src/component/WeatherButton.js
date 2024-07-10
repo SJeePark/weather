@@ -2,16 +2,17 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 
 
-const WeatherButton = () => {
+const WeatherButton = ({cities}) => {
+    console.log("cities", cities);
   return (
     <div>
       <Button variant="light">Current Location</Button>
-      <Button variant="light">Seoul</Button>
-      <Button variant="light">Paris</Button>
-      <Button variant="light">ToKyo</Button>
-      <Button variant="light">Rome</Button>
+      
+      {cities.map((item)=>(
+      <Button variant='light'>{item}</Button>))}
     </div>
   )
 }
+
 
 export default WeatherButton
