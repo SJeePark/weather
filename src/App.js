@@ -17,9 +17,11 @@ import WeatherButton from './component/WeatherButton';
 function App() {
 
   const [weather, setWeather] = useState(null)
-  const cities = ['Paris', 'New York', 'Tokyo', 'Seoul'];
+  const cities = ['Canberra', 'New York', 'Tokyo', 'London'];
   const [city, setCity]= useState("");
   const [loading, setLoading] =useState(false);
+  const [selectedButton, setSelectedButton] = useState("");
+  const [apiError, setAPIError] = useState("");
 
 
     // 현재 위치 
@@ -33,23 +35,33 @@ function App() {
   }
 
   const getWeatherByCurrentLocation = async(lat, lon)=>{
-    let url = (`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=12f16c18bca3e6647c2b6d2cfd03a0d8&units=metric`) 
+    try{let url = (`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=12f16c18bca3e6647c2b6d2cfd03a0d8&units=metric`) 
     setLoading(true)
     let response = await fetch(url);
     let data = await response.json(); 
-    setWeather(data)
-    setLoading(false)
+    setWeather(data);
+    setLoading(false);
+    } catch (err) {
+      setAPIError(err.message);
+      setLoading(false);
+    }
   };
 
 
   // 버튼누르면 city이름을 가져와 city에 대한 정보 불러오기
   const getWeatherByCity = async() =>{
-    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=12f16c18bca3e6647c2b6d2cfd03a0d8&units=metric`;
+    try {
+    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=12f16c18bca3e6647c2b6d2cfd03a0d8&units=metric&lang`;
     setLoading(true)
     let response = await fetch(url);
     let data = await response.json();
     setWeather(data);
     setLoading(false);
+    } catch (err) {
+      console.log(err);
+      setAPIError(err.message);
+      setLoading(false);
+    }
   }
   
 
@@ -63,25 +75,28 @@ function App() {
   }, [city]);
 
 
+  //button을 눌렀을 때 -> 색상변환 코드는 WeatherButton에서 변환
+  const handleButtonClick = (cityName) => {
+    setCity(cityName);
+    setSelectedButton(cityName);
+  };
+
+
   return (
     <div>
       <div className='title'>How's the Weather?</div>
-
-      <div>{loading?<div className='container'><ClipLoader color="#f88c6b" loading={loading} size={150}/></div>:<div className='container'>
-        <WeatherBox weather ={weather} />
-        <WeatherButton cities = {cities} getCurrentLocation = {getCurrentLocation} setCity={setCity}/>
-      </div>}
-      <div className='image'></div>
-    </div>
+      <div className='container'>
+        {loading && <ClipLoader color="violet" loading={loading} size={150} />}
+        {apiError && <div className="error-message">{apiError}</div>}
+        {!loading && !apiError && (
+          <>
+            <WeatherBox weather={weather} />
+            <WeatherButton cities={cities} getCurrentLocation={getCurrentLocation} setCity={handleButtonClick} selectedButton={selectedButton} />
+          </>
+        )}
+      </div>
     </div>
   );
 }
 
 export default App;
-
-// 날씨 별로 움짤 변경되면 좋겠당
-
-// 버튼 클릭
-// 해당 버튼의 색깔 유지
-// 함수 필요할 듯
-// 
