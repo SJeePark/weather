@@ -8,7 +8,7 @@ body{
 .title{
     display: flex;  
     justify-content: center;
-    margin-top: 40px;
+    padding-top: 40px;
     font-size: 70px;
     font-style: italic;
     font-family: 'MaruBuriSemiBold';
@@ -16,14 +16,11 @@ body{
 
 .container{
     display: flex;  
-    justify-content: center;
     align-items: center;
-    height: 50vh;
     /* display 가로 속성을 세로 정렬 바꿔줌*/
     flex-direction: column; 
-    background-color: rgba(255, 255, 255, 0.548);
+    background-color: rgba(255, 255, 255, 0.675);
     width: 50%;
-    height: 150%;
     border-radius: 20px;
 }
 
@@ -31,9 +28,12 @@ body{
     border: 3px solid white;
     border-radius: 50px;
     padding: 50px;
-    background-color: rgba(178, 179, 230, 0.749) ;
+    background-color: rgba(178, 179, 230, 0.823) ;
     margin: 20px;
-    font-family: 'Hahmlet-Regular';
+    font-family: 'MaruBuriSemiBold';
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 
@@ -55,25 +55,77 @@ body{
     background-color: rgb(160, 209, 237);
 }
 
-
-.image{
-    background: url('/img/rain.gif');
-    height: 30vh;
-    background-repeat: no-repeat;
-    background-size: cover;
-    
-}
 .description{
     font-size: 2.5rem;
 }
 
 table{
     text-align: center;
-    border: 1px solid #eaebec;
+    border: 2px solid #eaebec;
     margin-top: 25px;
     table-layout: fixed;
+    width: 90%;
+    border-collapse: collapse;
+}
+
+.content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     width: 100%;
 }
+
+.left-section {
+    flex: 1;
+}
+
+.right-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1.5;
+}
+
+.right-section img {
+    width: 180px;
+    height: 180px;
+}
+
+
+/* 배경 이미지 설정 */
+/* 맑음 */
+.body01d, .body01n, .body02d, .body02n {
+    background: url('/img/햇빛.png');
+    background-size: cover;
+    height: 100vh;
+}
+
+/* 비 */
+.body09d, .body09n, .body10d, .body10n {
+    background: url('/img/rain.gif');
+    background-size: cover;
+}
+
+/* 천둥번개 */
+.body11d, .body11n {
+    background-image: url('/img/storm.gif');
+    background-size: cover;
+}
+
+/* 눈 */
+.body13d, .body13n {
+    background-image: url('/img/snow.gif');
+    background-size: cover;
+}
+
+/* 안개 */
+.body50d, .body50n {
+    background-image: url('/img/mist_pic.jpg');
+    background-size: cover;
+}
+
+
+
 
 @font-face {
     font-family: 'MaruBuriSemiBold';
